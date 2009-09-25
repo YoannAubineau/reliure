@@ -3,17 +3,21 @@
 require_once('xpath.php'); # xpath, xpath_first_node
 
 
-function create_element($tag_name) {
+function current_document() {
     global $doc;  // XXX get ride of this ugly global import
-    
+    return $doc;
+}
+
+
+function create_element($tag_name) {
+    $doc = current_document();
     $element = $doc->createElement($tag_name);
     return $element;
 }
 
 
 function create_text_node($text) {
-    global $doc;  // XXX get ride of this ugly global import
-
+    $doc = current_document();
     $text_node = $doc->createTextNode($text);
     return $text_node;
 }
