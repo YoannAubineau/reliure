@@ -19,7 +19,8 @@ function flatten_array($array) {
 
 
 function join_url(/* $url_chunk[, $url_chunk, ...] */) {
-    $url_chunks = flatten_array(func_get_args());
+    $args = func_get_args();
+    $url_chunks = flatten_array($args);
     $url_chunks = array_map(trim_slashes, $url_chunks);
     $url = implode($url_chunks, '/');
     return $url;
