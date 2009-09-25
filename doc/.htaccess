@@ -1,0 +1,5 @@
+# make the documentation accessible online
+RewriteEngine On
+RewriteRule ^(.*)/$ $1/index.html [QSA]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ build/html/$1 [QSA,L]

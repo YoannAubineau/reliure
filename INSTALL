@@ -1,0 +1,35 @@
+
+DEPENDANCES
+===========
+
+Reliure requires PHP 5.2 and above to function properly.
+
+
+INSTALLATION
+============
+
+
+With Apache
+-----------
+
+At the root directory of your web site:
+
+    - Copy Reliure directory.
+    
+    - Add a .htaccess file that contains:
+
+        RewriteEngine On
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteRule ^(.*)$ reliure/?url=$1 [QSA,L]
+
+    - Create a template file, called site.php, that will hold the whole site 
+    structure.
+    
+You can change names and locations to what better suit your environment, but be
+sure to update the .htaccess and config.ini files accordingly.
+
+
+With other web servers
+----------------------
+
+Be creative! ;)
