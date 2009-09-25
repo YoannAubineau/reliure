@@ -4,17 +4,15 @@ require('string.php');  # trim_slashes, unaccentuate
 
 
 function flatten_array($array) {
-    $i = 0;
     if (! is_array($array)) {
         $value = $array;
-        return array($value);
+        $array = array($value);
     }
-    while ($i < count($array)) {
+    for ($i = 0; $i < count($array); $i++) {
         if (is_array($array[$i])) {
             array_splice($array, $i, 1, $array[$i]);
-            continue;
+            $i--;
         }
-        $i++;
     }
     return $array;
 }
