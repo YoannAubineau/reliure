@@ -1,6 +1,6 @@
 To run the tests :
 
-    1. Make sure ./reliure/tests/tmp directory is writable.
+    1. Create ./reliure/tests/tmp directory and make sure it is writable.
 
     2. Serve ./reliure directory through a web server and access its 
     ./tests subdirectory. For example:
@@ -8,4 +8,5 @@ To run the tests :
         $ ln -s ~/reliure /var/www/reliure
         $ links http://localhost/reliure/tests/
 
-The tests are run with the ./tests/config.ini configuration file. Do not change this file or you would break the tests.
+The tests are run with the ./tests/config.ini configuration file. Do not change
+this file or you would break the tests.
