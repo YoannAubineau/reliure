@@ -115,6 +115,7 @@ function maybe_follow_redirect($el) {
         './li[1]/a[@lang="'.LANG.'"]/@href',
         './li[1]/a/@href'
     )->value;
+    $url = join_url(BASEURL, $url, '');
     redirect($url);
 }
 
@@ -191,7 +192,7 @@ foreach ($navs as $nav) {
             }
         }
         $depth = count($url);
-        $url = join_url(BASEURL, LANG, array_reverse($url), '');
+        $url = join_url(LANG, array_reverse($url), '');
         $a->setAttribute('href', $url);
         if (! array_key_exists($name, $pages_map)) {
             $info = array($a->nodeValue, $name, $url, $depth);
@@ -207,8 +208,7 @@ foreach ($navs as $nav) {
 
 unset($local_map);
 foreach ($localized_url as $lang => $url) {
-    $localized_url[$lang] = join_url(
-        BASEURL, $lang, array_reverse($url), CHILD_NAME);
+    $localized_url[$lang] = join_url($lang, array_reverse($url), CHILD_NAME);
 }
 
 
