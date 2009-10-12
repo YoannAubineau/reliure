@@ -106,7 +106,7 @@ $localized_url = array();
 
 function maybe_follow_redirect($el) {
     $ul = xpath_first_node($el, 
-        './descendant-or-self::ul[@class~="'.NAV_GOTOFIRST_CLASSNAME.'"]');
+        './descendant-or-self::ul[1][@class~="'.NAV_GOTOFIRST_CLASSNAME.'"]');
     if (! $ul) {
         return;
     }
