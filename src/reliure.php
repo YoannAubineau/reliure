@@ -44,6 +44,8 @@ define(LANG, strtolower(array_shift($url)));
 
 $reversed_url = array_reverse($url);
 define(PAGE_NAME, ($reversed_url[1]) ? $reversed_url[1] : ROOTPAGE_NAME);
+
+
 define(CHILD_NAME, $reversed_url[0]);
 define(FRAME_NAME, (CHILD_NAME) ? PAGE_NAME.CHILDPAGE_SUFFIX : PAGE_NAME);
 
@@ -129,8 +131,10 @@ function record_localized_url($li) {
         xpath($li, './a');
     foreach ($as as $a) {
         $name = $a->getAttribute('href');
-        $lang = ($a->hasAttribute('lang')) ? 
-            $a->getAttribute('lang') : 'C';
+        if ($name == ROOTPAGE_NAME) {
+            continue;
+        }
+        $lang = ($a->hasAttribute('lang')) ? $a->getAttribute('lang') : 'C';
         $id = $lang.'::'.$name;
         if (in_array($id, $historics)) {
             return;
@@ -178,7 +182,10 @@ foreach ($navs as $nav) {
             record_localized_url($li);
         }
         add_element_class($li, $name);
-        $url = array($name);
+        $url = array();
+        if ($name != ROOTPAGE_NAME) {
+            $url[] = $name;
+        }
         $parent_lis = xpath($li, 
             './ancestor::li[not(count(node()[@class~="'.NAV_CLASSNAME.'"]))]');
         foreach (array_reverse($parent_lis) as $parent_li) {
@@ -363,7 +370,10 @@ foreach ($autolinks as $autolink) {
     
     if ($type == AUTOLINK_PAGE_TYPENAME) {
         $page_name = $value;
-        list($label, $name, $url, $depth) = $pages_map[$page_name];
+        list($_, $_, $url, $_) = $pages_map[$page_name];
+        if ($page_name == ROOTPAGE_NAME) {
+            $url = join_url(LANG, '');
+        }
     }
     if ($type == AUTOLINK_LANG_TYPENAME) {
         $lang = $value;
@@ -405,6 +415,7 @@ foreach ($autonavs as $autonav) {
             continue;
         }
         
+        $depth = max(1, $depth);
         if ($depth > count($ul_stack)) {
             $ul = $UL(array('class' => 'depth_'.$depth));
             array_unshift($ul_stack, $ul);
