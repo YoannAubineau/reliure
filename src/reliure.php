@@ -370,6 +370,9 @@ foreach ($autolinks as $autolink) {
         $url = $localized_url[$lang];
         if (! $url) {
             $url = $localized_url['C'];
+            if (! $url) {
+                $url = 'C/';
+            }
             $url = str_replace('C', $lang, $url);
         }
     }
