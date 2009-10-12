@@ -45,8 +45,6 @@ define(LANG, strtolower(array_shift($url)));
 
 $reversed_url = array_reverse($url);
 define(PAGE_NAME, ($reversed_url[1]) ? $reversed_url[1] : ROOTPAGE_NAME);
-
-
 define(CHILD_NAME, $reversed_url[0]);
 define(FRAME_NAME, (CHILD_NAME) ? PAGE_NAME.CHILDPAGE_SUFFIX : PAGE_NAME);
 
