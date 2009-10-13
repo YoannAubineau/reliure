@@ -1,6 +1,6 @@
 <?php
 
-define(BASEPATH, dirname(__FILE__));
+define(RELIURE_BASEPATH, dirname(__FILE__));
 
 // function is_direct_request() {
 //     $request_dir = dirname($_SERVER['REQUEST_URI'].'.');
@@ -13,7 +13,7 @@ define(BASEPATH, dirname(__FILE__));
 //     exit();
 // }
 
-define(INCLUDE_DIRPATH, BASEPATH.'/src');
+define(INCLUDE_DIRPATH, RELIURE_BASEPATH.'/src');
 
 require_once(INCLUDE_DIRPATH.'/index.php');
 

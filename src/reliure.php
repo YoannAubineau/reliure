@@ -29,6 +29,7 @@ foreach ($ro_config_keys as $key) {
 
 define(TEMPLATE_FILEPATH, ($_GET[TEMPLATE_QUERYFIELD]) ? 
     $_GET[TEMPLATE_QUERYFIELD] : $config['DEFAULT_TEMPLATE_FILEPATH']);
+define(BASEPATH, dirname(TEMPLATE_FILEPATH));
 
 
 /*
